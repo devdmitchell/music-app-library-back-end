@@ -1,7 +1,10 @@
-const express = require('express')
-const logger = require('morgan') 
-const mongoose = require('mongoose')
-const cors = require ('cors')
+const express = require('express');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const cors = require('cors');
+const axios = require('axios');
+
 
 
 const app = express()  
