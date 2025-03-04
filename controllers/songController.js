@@ -1,13 +1,13 @@
-const axios = require('axios')
+const Song = require('../models/Song')
 
 const addSong = async (req, res) => {
-  const song = new Song({ ...req.body, userId: req.userId });
+  const song = new Song({ ...req.body, userId: req.userId })
   await song.save()
   res.json(song)
 }
 
 const getSongs = async (req, res) => {
-  const songs = await Song.find({ userId: req.userId });
+  const songs = await Song.find({ userId: req.userId })
   res.json(songs)
 }
 
@@ -21,4 +21,4 @@ const deleteSong = async (req, res) => {
   res.json({ message: 'Song deleted' })
 }
 
-module.exports = { searchSongs, addSong, getSongs, updateSong, deleteSong }
+module.exports = { addSong, getSongs, updateSong, deleteSong }
