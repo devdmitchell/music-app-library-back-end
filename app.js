@@ -17,7 +17,7 @@ app.use(cors())
 
 //routes
 app.use('/api/songs', songRoutes)
-app.use('/api/auth', authRoutes)
+app.use('/', authRoutes)
 
 
 
