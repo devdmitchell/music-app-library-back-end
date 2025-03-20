@@ -7,8 +7,17 @@ const addSong = async (req, res) => {
 }
 
 const getSongs = async (req, res) => {
-  const songs = await Song.find({ userId: req.userId })
-  res.json(songs)
+  const query = req.query.search
+  const filter = { userId: req.userId }
+  if (query) {
+    filter.title = query
+  }
+  try {
+    const songs = await Song.find(filter)
+    res.json(songs)
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching songs', error: error.message })
+  }
 }
 
 const updateSong = async (req, res) => {
