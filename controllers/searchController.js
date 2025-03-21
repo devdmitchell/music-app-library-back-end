@@ -8,11 +8,11 @@ exports.searchSongs = async (req, res) => {
     const tracks = response.data.results.trackmatches.track.map(track => ({
       title: track.name,
       artist: track.artist,
-      album: '',
+      album: '', 
       cover: track.image?.[2]['#text'] || '',
     }))
     res.json(tracks)
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching data from Last.fm', error: error.message })
+    res.status(500).json({ message: 'Error fetching data from external API', error: error.message })
   }
 }

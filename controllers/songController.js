@@ -6,19 +6,45 @@ const addSong = async (req, res) => {
   res.json(song)
 }
 
+// const getSongs = async (req, res) => {
+//   const query = req.query.search
+//   const filter = { userId: req.userId }
+//   if (query) {
+//     filter.title = query
+//   }
+//   try {
+//     const songs = await Song.find(filter)
+//     res.json(songs)
+//   } catch (error) {
+//     res.status(500).json({ message: 'Error fetching songs', error: error.message })
+//   }
+// }
+
+
+
+
+
 const getSongs = async (req, res) => {
-  const query = req.query.search
-  const filter = { userId: req.userId }
+  const query = req.query.search;
+  const filter = { userId: req.userId };
+
   if (query) {
-    filter.title = query
+    filter.$or = [
+      { title: { $regex: query, $options: 'i' } },  // Search for partial matches in title (case-insensitive)
+      { artist: { $regex: query, $options: 'i' } }  // Search for partial matches in artist (case-insensitive)
+    ];
   }
+
   try {
-    const songs = await Song.find(filter)
-    res.json(songs)
+    const songs = await Song.find(filter);
+    res.json(songs);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching songs', error: error.message })
+    res.status(500).json({ message: 'Error fetching songs', error: error.message });
   }
-}
+};
+
+
+
 
 const updateSong = async (req, res) => {
   const song = await Song.findByIdAndUpdate(req.params.id, req.body, { new: true })
