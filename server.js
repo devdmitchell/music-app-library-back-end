@@ -2,14 +2,14 @@ require('dotenv').config()               //environment variables
 const mongoose = require('mongoose')
 const app = require('./app')
 
-const port =  3000
+const port = process.env.PORT || 3000
 
 
 const DB_ADDRESS = process.env.DB_ADDRESS
 const LAST_FM_API_KEY = process.env.LAST_FM_API_KEY
 const LAST_FM_URL = process.env.LAST_FM_URL
 
-console.log(DB_ADDRESS)
+// console.log(DB_ADDRESS)
 
 //mongoose connection
 mongoose

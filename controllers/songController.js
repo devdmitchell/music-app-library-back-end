@@ -44,6 +44,15 @@ const getSongs = async (req, res) => {
 };
 
 
+const getSongById = async (req, res) => {
+  try {
+    const song = await Song.findOne({ _id: req.params.id, userId: req.userId })
+    if (!song) return res.status(404).json({ message: 'Song not found' })
+    res.json(song)
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching song', error: error.message })
+  }
+}
 
 
 const updateSong = async (req, res) => {
@@ -56,4 +65,4 @@ const deleteSong = async (req, res) => {
   res.json({ message: 'Song deleted' })
 }
 
-module.exports = { addSong, getSongs, updateSong, deleteSong }
+module.exports = { addSong, getSongs, getSongById, updateSong, deleteSong }
