@@ -28,3 +28,7 @@ exports.searchSongs = async (req, res) => {         //defines and exports the fu
 
 
 // From MDN: You can use optional chaining when attempting to call a method which may not exist. This can be helpful, for example, when using an API in which a method might be unavailable, either due to the age of the implementation or because of a feature which isn't available on the user's device.
+
+
+
+//This function accepts search terms, calls last fm api for tracks, cleans the response and sends back track titles, artists, and cover art to my frontend
