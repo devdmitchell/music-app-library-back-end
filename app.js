@@ -2,11 +2,12 @@ const express = require('express')
 const logger = require('morgan') 
 const mongoose = require('mongoose')
 const cors = require('cors')
+const rateLimit = require('express-rate-limit')
 require('dotenv').config()
 
 const songRoutes = require('./routes/songRoutes')
 const authRoutes = require('./routes/authRoutes')
-const searchRoutes = require(`./routes/searchroutes`) 
+const searchRoutes = require(`./routes/searchRoutes`) 
 
 
 const app = express()  
