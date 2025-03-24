@@ -21,4 +21,4 @@ module.exports = auth
 
 
 // This is important because it protects my routes. Only logged-in users with valid tokens can hit routes and get songs and fetch their specific data
-// This function runs before protected routes to verify the user is logged in and authorized.
+// This function runs before protected routes to verify the user is logged in and authorized
